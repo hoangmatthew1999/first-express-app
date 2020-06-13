@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const users = [{number: "bye"}];
+const users = [{number: "bye"},{number: "hello"},{number: "hola"}];
 
 app.use( bodyParser.json() );
 app.use( express.static('html') );
@@ -25,20 +25,21 @@ app.post('/practice', urlEncoded,(req,res) =>{
     return res.send(params);
 
 } );
-app.post('/delete/',urlEncoded,(req,res) => {
-    res.sendFile(__dirname + "/html/delete.html");
-    console.log(req.body);
-    // console.log("hello");
-    return res.redirect('/delete-object');
+app.get('/delete/',urlEncoded,(req,res) => {
+    res.sendFile(__dirname + "/delete.html");
+    // console.log(__dirname);
     // res.send(`route created`);
-});
-app.get('/delete-object/',urlEncoded,(req,res) => {
     // console.log(req.body);
+    // console.log("hello");
+    // return res.redirect('/delete-object');
+});
+app.post('/delete-object/',urlEncoded,(req,res) => {
+    console.log(req.body.delete);
     // console.log(users[0].number);
     // console.log("after the key");
     for(let i = 0; i< users.length;i++){
-        if( users[i].number == "bye"){
-            users[i].number = "brian";
+        if( users[i].number == req.body.delete){
+            users.splice(i,1);
             console.log(users);
         }
     }
@@ -48,4 +49,4 @@ app.get('/delete-object/',urlEncoded,(req,res) => {
 
 
 
-app.listen(3010,function(){console.log("app is running");});
+app.listen(3011,function(){console.log("app is running");});
