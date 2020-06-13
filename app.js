@@ -42,11 +42,40 @@ app.post('/delete-object/',urlEncoded,(req,res) => {
             users.splice(i,1);
             console.log(users);
         }
+    
     }
-    return res.send("in the route");
+    return res.send("correctly deleted");
+    // res.send(`route created`);
+});
+
+app.get('/rename/',urlEncoded,(req,res) => {
+    res.sendFile(__dirname + "/rename.html");
+    // console.log(__dirname);
+    // res.send(`route created`);
+    // console.log(req.body);
+    // console.log("hello");
+    // return res.redirect('/delete-object');
+});
+app.post('/rename-object/',urlEncoded,(req,res) => {
+    // console.log(req.body);
+    // users[0].number = req.body.renameObj;
+    // console.log(users[0].number);
+    // console.log(users);
+    // console.log(users[0].number);
+    // console.log("after the key");
+    for(let i = 0; i< users.length;i++){
+        // console.log(users[i].number, "users[i].number   ", req.body.rename, "req.body.rename"     )
+        if( users[i].number == req.body.rename){
+            users[i].number = req.body.renameObj;
+        }
+    }
+    console.log(users);
+    return res.send("correctly deleted");
     // res.send(`route created`);
 });
 
 
 
-app.listen(3011,function(){console.log("app is running");});
+
+
+app.listen(3012,function(){console.log("app is running");});
