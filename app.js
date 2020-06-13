@@ -9,7 +9,10 @@ let urlEncoded = bodyParser.urlencoded({ extended: true });
 
 app.get('/item/:item', (req,res) =>{
     let item = req.params['item'];
-    return res.send(item);
+    let obj = {number: item};
+    console.log(obj);
+    users.push(obj);
+    return res.json(users);
 } );
 app.post('/practice', urlEncoded,(req,res) =>{
     // res.send(`Full name is:${req.fname} ${req.lname}.`);
@@ -23,4 +26,4 @@ app.post('/practice', urlEncoded,(req,res) =>{
 } );
 
 
-app.listen(3008,function(){console.log("app is running");});
+app.listen(3010,function(){console.log("app is running");});
