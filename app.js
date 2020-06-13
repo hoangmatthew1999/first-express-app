@@ -28,7 +28,7 @@ app.post('/practice', urlEncoded,(req,res) =>{
 app.post('/delete/',urlEncoded,(req,res) => {
     res.sendFile(__dirname + "/html/delete.html");
     console.log(req.body);
-    console.log("hello");
+    // console.log("hello");
     return res.redirect('/delete-object');
     // res.send(`route created`);
 });
@@ -38,8 +38,8 @@ app.get('/delete-object/',urlEncoded,(req,res) => {
     // console.log("after the key");
     for(let i = 0; i< users.length;i++){
         if( users[i].number == "bye"){
-            console.log("hello");
-            users[i].number = "hello";
+            users[i].number = "brian";
+            console.log(users);
         }
     }
     return res.send("in the route");
