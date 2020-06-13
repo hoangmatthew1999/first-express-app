@@ -1,7 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const app = express();
-const users = [];
+const users = [{number: "bye"}];
 
 app.use( bodyParser.json() );
 app.use( express.static('html') );
@@ -12,6 +12,7 @@ app.get('/item/:item', (req,res) =>{
     let obj = {number: item};
     console.log(obj);
     users.push(obj);
+    console.log(users[0]);
     return res.json(users);
 } );
 app.post('/practice', urlEncoded,(req,res) =>{
@@ -24,6 +25,27 @@ app.post('/practice', urlEncoded,(req,res) =>{
     return res.send(params);
 
 } );
+app.post('/delete/',urlEncoded,(req,res) => {
+    res.sendFile(__dirname + "/html/delete.html");
+    console.log(req.body);
+    console.log("hello");
+    return res.redirect('/delete-object');
+    // res.send(`route created`);
+});
+app.get('/delete-object/',urlEncoded,(req,res) => {
+    // console.log(req.body);
+    // console.log(users[0].number);
+    // console.log("after the key");
+    for(let i = 0; i< users.length;i++){
+        if( users[i].number == "bye"){
+            console.log("hello");
+            users[i].number = "hello";
+        }
+    }
+    return res.send("in the route");
+    // res.send(`route created`);
+});
+
 
 
 app.listen(3010,function(){console.log("app is running");});

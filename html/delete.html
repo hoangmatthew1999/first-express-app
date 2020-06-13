@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Page Title</title>
+</head>
+<body>
+    <form action = "/delete-object" method = "POST">
+        <label for="">Item to delete:</label><br>
+        <input type="text"  name="delete"><br>
+        <input type = "submit" value = "Submit" id ="login">
+      </form> 
+</body>
+</html> 
+
+<script type="text/javascript">
+  document.getElementById('myForm').addEventListener('Submit', function(event){
+      // this line prevents the normal behaviour of the form (ie: reloading the page with form data sent as POST data)
+      event.preventDefault();
+
+      // now we can check the form data
+      var x = this.fname.value;
+      var y = this.lname.value;
+      window.location.href = "item/hello";
+     
+  });
